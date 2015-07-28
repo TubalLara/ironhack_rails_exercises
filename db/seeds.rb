@@ -7,7 +7,11 @@ Project.create name: 'Recipes', description: 'Track my favourite recipes'
 25.times do |project|
 	
 
-	Project.create name: project.to_s, description: 'This is project' + project.to_s
+	project = Project.create name: project.to_s, description: 'This is project' + project.to_s
+	
+	project.entries.create(hours: 1, minutes: 30)
 	
 	
 end
+
+
