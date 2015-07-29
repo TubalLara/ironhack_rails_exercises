@@ -13,21 +13,22 @@ class ProjectsController < ApplicationController
 	end
 
 	def new 
-    	@project = Project.new params[:name, :description]
+    	@project = Project.new
   	end 
 
   	def create 
-	  @project = Project.new entry_params
+	  @project = Project.new project_params
 	  
 	    if @project.save 
-	      redirect_to action: 'new', controller: 'projects' 
+	      redirect_to projects_path 
 	    else 
-	      render 'projects/new' 
+	    	@errors = @project.errors.full_message
+	        render 'new' 
 	    end 
 	end
 
 	private
-	def entry_params 
-        params.require(:project).permit(:name, :description) 
+	def project_params 
+        params.require(:projects).permit(:name, :description) 
   	end 
 end
