@@ -1,7 +1,7 @@
 class Project < ActiveRecord::Base
 	has_many :entries
 	validates :name, uniqueness: true
-	validates :name, presence: true
+	validates :name, presence: {message: "There should be a message!"}
 	validates :name, lenght: {maximum: 30}
 	validates :name, format: {with: /^[a-zA-Z0-9\s]+$/ }
 
