@@ -11,4 +11,23 @@ class ProjectsController < ApplicationController
 			render 'projects/no_projects_found'
 		end
 	end
+
+	def new 
+    	@project = Project.new params[:name, :description]
+  	end 
+
+  	def create 
+	  @project = Project.new entry_params
+	  
+	    if @project.save 
+	      redirect_to action: 'new', controller: 'projects' 
+	    else 
+	      render 'projects/new' 
+	    end 
+	end
+
+	private
+	def entry_params 
+        params.require(:project).permit(:name, :description) 
+  	end 
 end
